@@ -1,0 +1,112 @@
+:root {
+    /* Colores temáticos de galería: Morado oscuro y dorado/crema */
+    --color-principal: #5d2b7e;
+    /* Púrpura elegante */
+    --color-fondo: #f5f5f5;
+    --color-sidebar: #c5b078;
+    /* Dorado suave */
+    --color-tarjeta: #b3cde0;
+    /* Azul grisáceo para tarjetas */
+}
+
+body {
+    font-family: 'Times New Roman', serif;
+    background-color: var(--color-fondo);
+    margin: 0;
+    padding-top: 56px;
+    /* Espacio para la Navbar fija */
+}
+
+/* Contenedor de la página: Usa CSS Grid */
+.container-grid {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    /* MOBILE FIRST: Por defecto, Grid apila los elementos en una columna. */
+}
+
+/* Estilos generales de las cajas */
+.seccion,
+.sidebar,
+.artwork-card {
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    text-align: center;
+}
+
+/* Sidebar: Oculta en móvil */
+.sidebar {
+    display: none;
+    /* MOBILE FIRST: Se oculta para dar espacio al contenido principal */
+    background-color: var(--color-sidebar);
+    color: #1a1a1a;
+}
+
+/* 2. FLEXBOX para los Items de Pinturas */
+.artwork-flex-container {
+    display: flex;
+    flex-direction: column;
+    /* MOBILE FIRST: Items apilados verticalmente */
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.artwork-card {
+    background-color: var(--color-tarjeta);
+    color: #333;
+    padding: 30px 10px;
+    font-weight: bold;
+    flex-grow: 1;
+    border: 1px solid #999;
+}
+
+/* ---------------------------------------------------- */
+/* 3. MEDIA QUERY 1: TABLET (Min-width: 768px) */
+/* ---------------------------------------------------- */
+@media (min-width: 768px) {
+
+    /* CSS Grid: Activa el diseño de 2 columnas */
+    .container-grid {
+        /* Contenido (3 partes) | Sidebar (1 parte) */
+        grid-template-columns: 3fr 1fr;
+    }
+
+    /* Mostrar la barra lateral */
+    .sidebar {
+        display: block;
+    }
+
+    /* Flexbox: 2 items por fila */
+    .artwork-flex-container {
+        flex-direction: row;
+        /* Los items se muestran horizontalmente */
+        flex-wrap: wrap;
+    }
+
+    .artwork-card {
+        /* 50% de ancho, menos la mitad del espacio (gap) */
+        flex-basis: calc(50% - 7.5px);
+    }
+}
+
+/* ---------------------------------------------------- */
+/* 4. MEDIA QUERY 2: DESKTOP (Min-width: 1200px) */
+/* ---------------------------------------------------- */
+@media (min-width: 1200px) {
+
+    /* CSS Grid: Ajuste de proporciones en Desktop */
+    .container-grid {
+        /* Contenido (4 partes) | Sidebar (1 parte) */
+        grid-template-columns: 4fr 1fr;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    /* Flexbox: 3 items por fila */
+    .artwork-card {
+        /* 33.333% de ancho, menos el espacio ajustado */
+        flex-basis: calc(33.333% - 10px);
+    }
+}

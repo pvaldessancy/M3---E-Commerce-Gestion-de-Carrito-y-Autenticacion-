@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Producto - Tienda E-commerce Arte</title>
+
+    <!-- Integración de Bootstrap para la barra de navegación -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <!-- 5. Navbar de Bootstrap -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: var(--color-principal);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Home</a>
+            <!-- Botón de menú hamburguesa (Colapsable en móvil) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="productos.html">Pinturas</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#carritoModal">
+                            Carrito
+                        </a>
+                    </li>
+                    <li class="nav-item" id="nav-login">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                    </li>
+                    <li class="nav-item" id="nav-registro">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#registroModal">Registro</a>
+                    </li>
+                    <li class="nav-item d-none" id="nav-logout">
+                        <a class="nav-link" href="#" onclick="cerrarSesion()">Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="p-4 text-center" style="background-color: white;">
+        <h1>Detalle de la Obra</h1>
+        <p class="lead text-secondary">Información detallada sobre la pintura seleccionada.</p>
+    </header>
+
+    <!-- Contenedor principal con CSS Grid -->
+    <main class="container-grid">
+
+        <!-- Contenido Principal: Detalle del producto -->
+        <section class="seccion">
+            <h2>Obra: Umbral de luz</h2>
+
+            <div class="card mb-3 mx-auto" style="max-width: 800px;">
+                <div class="row g-0">
+                    <div class="col-md-4 bg-secondary d-flex align-items-center justify-content-center text-white"
+                        style="min-height: 300px;">
+                        <!-- Placeholder para imagen -->
+                        <img src="assets/img/pintura1.jpg" class="img-fluid" alt="Imagen de la Obra">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body text-start">
+                            <h5 class="card-title">Título de la Obra</h5>
+                            <p class="card-text">Entre la bruma y el silencio, una claridad se abre paso.El paisaje no
+                                es solo un reflejo del cielo, sino del alma que busca renacer. En el límite entre lo
+                                oscuro y lo sereno, la luz se expande, suave y constante, recordando que toda sombra
+                                guarda en su centro una promesa de amanecer. “Umbral de luz” forma parte de mi búsqueda
+                                por representar la conexión entre lo emocional y lo natural, entre el agua, la sombra y
+                                el renacer. Esta pintada en acrílico sobre tela en bastidor, utilizando la técnica de
+                                los difuminados con brocha, sus dimensiones son 50 cm x 120 cm..</p>
+                            <p class="card-text"><small class="text-muted">Autor: Paula Valdés Sancy</small></p>
+                            <p class="card-text"><strong>Precio: $150.000</strong></p>
+                            <div class="d-grid gap-2 d-md-block">
+                                <button class="btn btn-success" type="button" onclick="agregarProducto(1)">Añadir al
+                                    carro</button>
+                                <a href="productos.html" class="btn btn-secondary">Volver al catálogo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Barra Lateral: Biografías/Filtros (Usa CSS Grid para su posición)-->
+        <aside class="sidebar">
+            <h3>BIOGRAFÍAS Y COLECCIONES</h3>
+            <hr>
+            <p><strong>Filtros por Colección:</strong></p>
+            <ul>
+                <li>Abstractos</li>
+                <li>Realistas</li>
+                <li>Acuarelas</li>
+            </ul>
+        </aside>
+
+    </main>
+
+    <footer class="text-center p-3 text-white mt-4" style="background-color: #333;">
+        <p>©2025 Tienda E-commerce Agrupación de Arte Pucón. Todos los derechos reservados.</p>
+        <p>Diseñado por Paula Valdés Sancy</p>
+        <p>Contacto: @valdessancy</p>
+    </footer>
+
+    <!-- Botón Ir Arriba -->
+    <button id="btn-ir-arriba" class="btn btn-primary" onclick="irArriba()"
+        style="position: fixed; bottom: 20px; right: 20px; display: none; z-index: 1000;">Ir arriba</button>
+
+    <!-- Modal Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Iniciar Sesión</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="email" id="loginEmail" class="form-control mb-3" placeholder="Email">
+                    <input type="password" id="loginPassword" class="form-control" placeholder="Contraseña">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="iniciarSesion()">Ingresar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Registro -->
+    <div class="modal fade" id="registroModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Registro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Formulario de registro...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Carrito -->
+    <div class="modal fade" id="carritoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tu Carrito</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="carrito-body"></tbody>
+                    </table>
+                    <div class="text-end">
+                        <h4>Total: <span id="carrito-total">$0</span></h4>
+                    </div>
+                    <div class="input-group mt-3">
+                        <input type="text" id="codigoDescuento" class="form-control" placeholder="Código de descuento">
+                        <button class="btn btn-outline-secondary" type="button"
+                            onclick="aplicarDescuento()">Aplicar</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script propio -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- JavaScript de Bootstrap (Obligatorio para el menú hamburguesa) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+        integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
